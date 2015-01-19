@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+    <style type="text/css">
+        slide {
+            border-bottom: 30px black solid !important;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/steam_learn.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/phiropsi.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Modern App Architecture</h2>
+      <h3>Agenda</h3>
+    </hgroup>
+    <article>
+      <p>What we'll cover:</p>
+      <ul class="build">
+        <li>Goals for modern web architecture</li>
+        <li>Twelve Factor Apps</li>
+        <li>Outro</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/phiropsi.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Goals for modern web architecture</h2>
+      <h3>... and what we won't cover</h3>
+    </hgroup>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+<p>Very generic</p>
+<p>12 factor app is...</p>
+<p>collection of factor / app properties/guidelines ...</p>
+<p>Some might sound obvious, but explicit is better than implicit</p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>What is Modern Application Architecture ?</h2>
+    </hgroup>
+    <article>
+      <p>We will introduce principles that :</p>
+      <ul class="build">
+        <li>Tends to provide <b>sane</b> architectures</li>
+        <li>Are intended for <b>developers</b> and <b>ops</b> (and devops)</li>
+        <li>Limits sofware <b>erosion</b></li>
+        <li>Are <b>used daily</b> in major companies, in major deployments</li>
+        <li>Are building blocks for Cloud deployments, and PAAS</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>What is it NOT about ?</h2>
+    </hgroup>
+    <article>
+      <p>We won't speak about architectural patterns (or trends) :</p>
+      <ul class="build">
+        <li>Single Page Applications</li>
+        <li>Micro-Services Architectures</li>
+        <li>Asynchronous Programming (nor Coroutines)</li>
+        <li>Domain Driven Design</li>
+        <li>Message/Event based architecture</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>NoSQL vs SQL : hint, the problem is not this, it's persistence</li>
+          <li>Declarative vs Imperative : my goal is "be declarative when you can", it's easier for others</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>What is it NOT about ?</h2>
+      <h3>cont’d</h3>
+    </hgroup>
+    <article>
+      <p>We won't speak about different software approches :</p>
+      <ul class="build">
+        <li>MVC/MVVM/MVP war</li>
+        <li>NoSQL vs SQL</li>
+        <li>Functionnal vs Logical vs Procedural vs Object-Oriented vs Bro programming</li>
+        <li>Declarative vs Imperative</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/phiropsi.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Twelve Factor App</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>No environment specific in codebase</li>
+          <li>Git-Flow</li>
+          <li>Unit test</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>1. Codebase</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        One codebase tracked in revision control, many deploys
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>eg compozer</li>
+          <li>Declare all dependencies, completly and exactly</li>
+          <li>Docker file</li>
+          <li>Vendoring</li>
+          <li>Versions ; add version testing / bumping part of the process</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>2. Dependencies</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Explicitly declare and isolate dependencies
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>All env specific variables/conf should be in environment</li>
+          <li>or service like etcd</li>
+          <li>or DNS</li>
+          <li>Not app config, just env</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>3. Config</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Store config in the environment
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>SGBD, SMTP, Memcache, …</li>
+          <li>as attached service, not as part of your app</li>
+          <!-- <li>Separate concerns (e.g. Dogpile)</li> -->
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>4. Backing Services
+</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Treat backing services as attached resources
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>Build : transform code into artifact (compile, fetch deps, …)</li>
+          <ul>
+            <li>Continuous Integration: build test, mesure</li>
+            <li>Plus important</li>
+          </ul>
+          <li>Release : avec configuration de deployment</li>
+          <li>Run : execute</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>5. Build, Release, Run
+</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Strictly separate build and run stages
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>stateless and share nothing</li>
+          <li>ideally, RO FS</li>
+          <li>No sticky sessions (macaroons, Json Web Token 'JOT')</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>6. Processes</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Execute the app as one or more stateless processes
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>read expected port from con (CF 3.)</li>
+          <li>don't expect to be the "owner" for a system ressource like a port</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>7. Port Binding
+</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Export services by port binding
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>add more processes to support more load</li>
+          <li>do not daemonize, no PID</li>
+          <li>does not exclude threads/async</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>8. Concurency</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Scale out via the process model
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>start fast</li>
+          <li>stop gracefully</li>
+          <li>die robustly</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>9. Disposability</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Maximize robustness with fast startup and gracefull shutdown
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+      <p>Minimize three gaps</p>
+        <ul>
+          <li>Time : Continuous Deployment : Develop=>dev, releases=>QA, master=>dev</li>
+          <li>Personnel : DevOps + automation</li>
+          <li>Tools/envs : Vagrant + easy branch deploy</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>10. Dev / Prod parity
+</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Keep development, staging, and production as similar as possible
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>Do not handle logs yourself</li>
+          <li>Treat application logs appart</li>
+          <li>stdout ideal</li>
+          <li>tooling for agregation (logstash, splunk, fluentd, flume, ...)</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>11. Logs</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Treat logs as event streams
+      </q>
+      </article>
+  </slide>
+
+  <slide>
+      <aside class="note">
+      <section>
+        <ul>
+          <li>No "hand" work</li>
+          <li>same env as current processes</li>
+          <li>automation + declarative</li>
+          <li>DSL</li>
+        </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>12. Admin processes</h2>
+    </hgroup>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+Run admin/management tasks as one-off processes
+      </q>
+      </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/phiropsi.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Outro</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+       <aside class="note">
+      <section>
+        <ul>
+          <li>Martin Fowler</li>
+          <li>Patterns of Enterprise Application Architecture</li>
+        </ul>
+      </section>
+    </aside>
+
+    <hgroup>
+      <h2>Ressources</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+        <p><a href="http://12factor.net">Twelve Factor App</a></p>
+        <p><a href="http://martinfowler.com">Excelent and detailed ressources on architectures</a></p>
+        <p><a href="http://martinfowler.com/books/eaa.html">Must have-read book : PEAA</a></p>
+      </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="note">
+      <section>
+        <p>Steam Learn team</p>
+        <ul>
+          <li>Vincent</li>
+          <li>Pierre</li>
+          <li>Clement</li>
+        </ul>
+      </section>
+    </aside>
+    <aside class="gdbar right"><img src="images/phiropsi.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Thank You!</h2>
+      <p>jc.bohin@phiropsi.com</p>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/phiropsi.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Questions ?</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Other talks</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+    <ul>
+    <li>Les bonnes pratiques REST/ROA</li>
+    <li>Websocket : le futur du web asynchrone et réactif</li>
+    <li>Évaluation mathématique de la durée d'une tâche ("3 point estimation")</li>
+    <li>Management : Quelques trucs simples pour améliorer son management d'équipes</li>
+    <li>Introduction à la programmation asynchrone et évènementielle</li>
+    <li>Performance des applis webs : quick wins et deal breakers</li>
+    <li>Introduction à l'architecture des Systèmes d'information</li>
+    <li>Comment réussir une réunion</li>
+    <li>Environnement de développement léger et portable (vagrant / docker)</li>
+    <li>Introduction au KanBan</li>
+    <li>Continuous delivery : enjeux et bénéfices</li>
+    <li>Introduction à GoLang</li>
+    <li>Comment réussir un slidedeck</li>
+    </ul>
+      </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Possible new talks</h2>
+    </hgroup>
+    <article class="flexbox vleft">
+    <ul>
+        <li>Micro-Services Architectures</li>
+        <li>Controlers must die</li>
+        <li>Reactive Programming &amp; Functionnal Reactive Programming</li>
+        <li>Event-based Architecture (not Async Prog)</li>
+        <li>DevOps</li>
+    </ul>
+      </article>
+  </slide>
+
+  <slide class="logoslide dark nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/steam_learn.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
